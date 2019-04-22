@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Mp3 player</title>
+</head>
+<style>
+    #willw,
+    #anyw,
+    #lebenw {
+
+        display: none;
+    }
+
+    #container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    img{
+        display:none;
+        width:100%;
+    }
+</style>
+
+<body>
+    <div id='container'>
+        
+        <img src='anyw.PNG' alt='any' id='any'>
+         <img src='willw.PNG' alt='will' id='will'>
+         <img src='lebenw.PNG' alt='leben' id='leben'>
+         <img src='start.PNG' alt='leben' id='start'>
+        <audio id='player'>
+            <source src='leben.mp3' />
+        </audio>
+        <button id='btnPlay'>Play</button>
+        <button id='btnPause'>Pause</button>
+        <button id='btnStop'>Stop</button>
+        <label for='rngVolume'>Volume</label>
+        <input type='range' id='rngVolume' min='0' max='1' step='.01' value='.5' data-highlight='true' onchange='changeVolume()'>
+        <ul data-role='listview' data-inset='true'>
+            <li data-role='list-divider'>Songs</li>
+            <li> <a href="#" onclick="changeSong('leben')">In my life</a> </li>
+            <li> <a href="#" onclick="changeSong('any')">Anywhere anyway anytime</a> </li>
+            <li> <a href="#" onclick="changeSong('will')">Will you go with me</a> </li>
+          
+                 <div data-role="collapsible"  id='willw'>
+ <h3>Lyrics</h3><br>
+                Willst Du mit mir gehn,<br>
+                Wenn mein Weg ins Dunkel führt.<br>
+                Willst Du mit mir gehn,<br>
+                Wenn mein Tag schon Nachtwind spürt.<br>
+                Wenn ich nicht mehr Vagabund sein will,<br>
+                Baust du mein Haus<br>
+                Und ruhst du mit mir vom Leben aus.<br>
+                Willst Du mit mir gehn,<br>
+                Licht und Schatten verstehn.<br>
+                Dich mit Windrosen drehen,<br>
+                Willst Du mit mir gehn.<br>
+                Willst Du mit mir gehn<br>
+                Man nennt es Liebe, man nennt es Glücklichsein,<br>
+                Keine Sprache hat mehr als Worte.<br>
+                Willst Du mit mir gehn, ...<br>
+                Willst Du mit mir gehn,<br>
+                Wenn ich nicht mehr bin wie einst.<br>
+                Willst Du mit mir gehn,<br>
+                Auch wenn Du um gestern weinst.<br>
+                Wenn jedes Schweigen uns verrät,<br>
+                Was reden wir,<br>
+                Tröstet mich auch dann ein Wort von Dir.<br>
+                Willst Du mit mir gehn ...<br>
+                Man nennt es ...<br>
+                Willst Du mit mir gehn ...<br>
+                Willst Du mit mir gehn,<br>
+                Wenn die Angst bei mir verweilt,<br>
+                Willst Du mit mir gehn,<br>
+                Wenn die Zeit mich nicht mehr heilt.<br>
+                Wenn der Ruf der Welt vor mir verstummt,<br>
+                Fragst du nach mir.<br>
+                Wartest du auch dann vor meiner Tür?<br>
+                Willst du mit mir gehn ....<br>
+                  </div>
+          
+                      
+           
+                 <div data-role="collapsible" id='anyw'>
+               <h3>Lyrics</h3><br>
+                Im Sturz durch Raum und Zeit<br>
+                Richtung Unendlichkeit<br>
+                Fliegen Motten in das Licht<br>
+                Genau wie du und ich<br>
+                Irgendwie fängt irgendwann<br>
+                Irgendwo die Zukunft an<br>
+                Ich warte nicht mehr lang<br>
+                Liebe wird aus Mut gemacht<br>
+                Denk nicht lange nach<br>
+                Wir fahr’n auf Feuerrädern<br>
+                Richtung Zukunft durch die Nacht<br>
+                Gib mir die Hand<br>
+                Ich bau dir ein Schloss aus Sand<br>
+                Irgendwie irgendwo irgendwann<br>
+                Die Zeit ist reif<br>
+                Für ein bisschen Zärtlichkeit<br>
+                Irgendwie irgendwo irgendwann<br>
+                Im Sturz durch Zeit und Raum<br>
+                Erwacht aus einem Traum<br>
+                Nur ein kurzer Augenblick<br>
+                Dann kehrt die Nacht zurück<br>
+                Die Zeit ist reif<br>
+                Für ein bisschen Zärtlichkeit<br>
+                Nicht irgendwie<br>
+                Nicht irgendwann
+                Sondern jetzt
+        </div>
+         
+
+         
+                 <div data-role="collapsible" id='lebenw'>
+                <h3>Lyrics</h3><br>
+                In meinem Leben<br>
+                Bin ich oft geflogen<br>
+                Bin ich tief gefallen<br>
+                Und manchmal auch ertrunken<br>
+                Ich hab gewonnen<br>
+                Und ich hab verloren<br>
+                Und ich bin gestorben<br>
+                Und wieder neu geboren<br>
+                Ich hab gegeben<br>
+                Und ich hab genommen<br>
+                Und wir haben uns gefunden<br>
+                Und wir sind so weit gekommen<br>
+                Ich bin mir nah<br>
+                Und immer wieder fremd<br>
+                Das hat was von Alleinsein<br>
+                Und das mich keiner kennt<br>
+                Ich will nicht arm sein<br>
+                Und Geld macht mich nicht reich<br>
+                Manchmal ist Leben schwer<br>
+                Und meistens finde ich's leicht<br>
+                Ich hab geweint<br>
+                Und ich hab gelacht<br>
+                Und endlich rausgefunden<br>
+                Was mich schöner macht<br>
+                Ich hab getrunken<br>
+                Und ich hab geraucht<br>
+                Und ich hab meine Kräfte<br>
+                Komplett aufgebraucht<br>
+                Und wenn ich wieder<br>
+                Auf die Beine komme<br>
+                Ist immer wieder Leben<br>
+                Ist immer wieder Sonne<br>
+
+                Und hier bist du hältst meine Hand und lachst<br>
+                Weil du mich besser kennst als ich<br>
+                Ich bin verliebt in dich<br>
+                Mein Leben will<br>
+                Ich mir nicht vorstellen ohne dich<br>
+                In meinem Leben<br>
+                Bin ich oft geflogen<br>
+                Ich hab auch schon gelogen<br>
+                Und dich und mich betrogen<br>
+                Ich flog hinauf zum Himmel<br>
+                Ich hab geliebt und war davon betrunken<br>
+                Ich flog hinauf zum Himmel<br>
+                Und bin ganz tief gesunken<br>
+                Ich lass mich hängen<br>
+                Und steh' dann wieder auf<br>
+                Ich leb' so gesund<br>
+                Und Drogen nehm' ich auch<br>
+                Ich zähl' die Jahre<br>
+                Und ich zähl' sie nicht<br>
+                Ich steh' im Dunkeln<br>
+                Und ich mag das Licht<br>
+                Und hier bist du hältst meine Hand und lachst<br>
+                Weil du mich besser kennst als ich<br>
+                Ich bin verliebt in dich<br>
+                Mein Leben will<br>
+                Ich mir nicht vorstellen ohne dich<br>
+                Ich liebe manche Menschen<br>
+                Und manche lieben mich<br>
+                Und die, die mich nicht lieben<br>
+                Die vermisse ich nicht<br>
+                Ich liebe meine Kinder<br>
+                Und ich liebe dich<br>
+                Und manchmal fühl' ich gar nichts<br>
+                Dann fühl' ich nicht mal mich<br>
+                Ich wünsch' mir Frieden<br>
+                Und Gelassenheit<br>
+                Ein Herz das immer warm ist<br>
+                Ich bin noch nicht so weit<br>
+                Und Freiheit tut mir gut<br>
+                Ich tuh' mir manchmal weh<br>
+                Ich fühl' mich stark auch wenn ich gerade, nicht so gerade steh<br>
+                Meine Angst vorm Sterben<br>
+                Verwandelt sich in Luft<br>
+                Löst sich langsam auf, weil mich das Leben ruft<br>
+                Und hier bist du, hältst meine Hand und lachst<br>
+                Weil du mich besser kennst als ich<br>
+                Ich bin verliebt in dich<br>
+                Mein Leben will ich mir nicht vorstellen ohne dich<br>
+                Mit dir will ich weiter und ich folge dir<br>
+                Und du nimmst immer auch von mir<br>
+                Ich bin verliebt in dieses Leben und<br>
+                Ich bleib noch mal so lange hier<br>
+                Bei dir<br>
+                Ich bleib noch mal so lange hier<br>
+                Bei dir<br>
+            </div>
+           
+
+            <div data-role='footer'>
+                <ouput id='timeout'>Elapsed Time</ouput>
+            </div>
+        </ul>
+        <script>
+            var player;
+            var rngVolume;
+            var intv;
+
+            window.onload = function() {
+                document.addEventListener('deviceready', init, false);
+                init();
+
+            }
+
+            function init() {
+
+                player = document.getElementById('player');
+                var btnPlay = document.getElementById('btnPlay');
+                var btnPause = document.getElementById('btnPause');
+                var btnStop = document.getElementById('btnStop');
+                rngVolume = document.getElementById('rngVolume');
+
+                btnPlay.addEventListener('click', playMusic, false);
+                btnPause.addEventListener('click', pauseMusic, false);
+                btnStop.addEventListener('click', stopMusic, false);
+                document.getElementById('start').style.display='block';
+
+            }
+
+            function playMusic() {
+
+                player.play();
+                startTimer();
+
+            }
+
+            function pauseMusic() {
+                player.pause();
+
+            }
+
+            function stopMusic() {
+
+                pauseMusic();
+                player.currentTime = 0;
+                stopTimer();
+            }
+
+            function changeVolume() {
+
+                player.volume = rngVolume.value;
+            }
+
+            function changeSong(song) {
+                stopMusic();
+                player.src = song + ".mp3";
+                playMusic();
+                var element = song + "w";
+                document.getElementById('lebenw').style.display = "none";
+                document.getElementById('willw').style.display = "none";
+                document.getElementById('anyw').style.display = "none";
+                document.getElementById(element).style.display = "block";
+        document.getElementsByTagName('img')[0].style.display="none";
+        document.getElementsByTagName('img')[1].style.display="none";
+        document.getElementsByTagName('img')[2].style.display="none";
+        document.getElementsByTagName('img')[3].style.display="none";        
+                var picture = document.getElementById(song).style.display="block";
+
+
+            }
+
+            function startTimer() {
+
+                intv = setInterval(updateTime, 1000);
+            }
+
+
+            function stopTimer() {
+                clearInterval(intv);
+                updateTime();
+            }
+
+            function updateTime() {
+
+                document.getElementById('timeout').innerHTML = "Elapsed Time " + secsToMins(player.currentTime);
+            }
+
+            function secsToMins(seconds) {
+
+                var minutes = Math.floor(seconds / 60);
+                var theSeconds = seconds - minutes * 60
+                if (theSeconds > 9) {
+                    return minutes + ":" + Math.round(theSeconds);
+                } else {
+                    return minutes + ":0" + Math.round(theSeconds);
+                }
+
+            }
+        </script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </div>
+</body>
+
+</html>
